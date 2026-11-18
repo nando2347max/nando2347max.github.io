@@ -537,12 +537,12 @@ function drawGrain() { const d = gx.createImageData(160, 100); for (let k = 0; k
 
 /* ---------- main loop ---------- */
 function resize() {
-  vw = innerWidth; vh = innerHeight; dpr = Math.min(devicePixelRatio || 1, dprCap);
+  const RT = world.getBoundingClientRect(); vw = Math.round(RT.width) || document.documentElement.clientWidth || innerWidth; vh = Math.round(RT.height) || document.documentElement.clientHeight || innerHeight; dpr = Math.min(devicePixelRatio || 1, dprCap);
   glc.width = Math.round(vw * dpr); glc.height = Math.round(vh * dpr); spillCv.width = Math.max(64, vw / 8 | 0); spillCv.height = Math.max(48, vh / 8 | 0);
   if (zoom >= 0) Object.assign(goal, zoomGoal(zoom)); else setGoalWall();
   if (!frameN) Object.assign(cam, goal, { dist: goal.dist * 1.0 });
 }
-addEventListener('resize', resize);
+addEventListener('resize', resize); if (window.ResizeObserver) new ResizeObserver(() => resize()).observe(world); addEventListener('orientationchange', () => setTimeout(resize, 300));
 let lastT = performance.now(), pdx = 0, pdy = 0, slow = 0, dprCap = LOW ? 1 : 1.5, reduceDpr = false;
 function frame(now) {
   requestAnimationFrame(frame);

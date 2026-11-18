@@ -9,7 +9,8 @@ if(seen||location.hash||window.top!==window.self)return;
 window.__wallOpen=true;
 var f=document.createElement('iframe');f.id='nandoWall';f.title='Nando de Groot';f.allow='autoplay; fullscreen; encrypted-media';
 f.src='intro/'+(location.protocol==='file:'?'index.html':'');
-f.style.cssText='position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;border:0;z-index:2147483647;background:#010302;display:block';
+f.setAttribute('scrolling','no');f.style.cssText='position:fixed;left:0;top:0;width:100%;height:100%;border:0;z-index:2147483647;background:#010302;display:block';
+function fit(){f.style.width=document.documentElement.clientWidth+'px';f.style.height=window.innerHeight+'px'}fit();addEventListener('resize',fit);addEventListener('orientationchange',function(){setTimeout(fit,300)});
 document.documentElement.appendChild(f);
 function enter(){if(!window.__wallOpen)return;window.__wallOpen=false;try{sessionStorage.setItem('nandoIn','1')}catch(e){}
  f.style.transition='opacity .35s';f.style.opacity='0';setTimeout(function(){f.remove()},380);if(window.__afterWall){var g=window.__afterWall;window.__afterWall=null;g()}}
