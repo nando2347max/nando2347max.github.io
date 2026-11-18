@@ -2,8 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>/* phones get the light mobile version (same address): the full site is too heavy for phone browsers */
+(function(){var ua=navigator.userAgent,phone=/iPhone|iPod|Android.*Mobile|Windows Phone|Mobile.*Firefox/i.test(ua)||(matchMedia('(pointer:coarse)').matches&&Math.min(screen.width,screen.height)<820),full=false;
+try{full=sessionStorage.getItem('nandoFull')==='1'}catch(e){}
+if(!phone||full||window.top!==window.self)return;window.__mobile=true;try{window.stop()}catch(e){}
+var base=new URL('m/',location.href).href;
+setTimeout(function(){var x=new XMLHttpRequest();x.open('GET',base+(location.protocol==='file:'?'index.html':''));x.onload=function(){if(x.status!==200&&x.status!==0){location.replace(base);return}var d=new DOMParser().parseFromString(x.responseText,'text/html'),bs=d.createElement('base');bs.href=base;d.head.insertBefore(bs,d.head.firstChild);var el=document.adoptNode(d.documentElement);document.replaceChild(el,document.documentElement);document.title=d.title;el.querySelectorAll('script').forEach(function(o){var n=document.createElement('script');n.textContent=o.textContent;o.replaceWith(n)})};x.onerror=function(){location.replace(base)};x.send()},0);})();</script>
 <script>/* CRT TV wall: shown on top of the home page (same address), once per visit. Links with #page (e.g. /#camera) skip it. */
-(function(){var seen=false;try{seen=sessionStorage.getItem('nandoIn')==='1'}catch(e){}
+(function(){if(window.__mobile)return;var seen=false;try{seen=sessionStorage.getItem('nandoIn')==='1'}catch(e){}
 if(/[?&]in\b/.test(location.search)){try{sessionStorage.setItem('nandoIn','1');history.replaceState(null,'',location.pathname+location.hash)}catch(e){}return}
 if(seen||location.hash||window.top!==window.self)return;
 window.__wallOpen=true;
