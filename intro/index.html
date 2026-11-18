@@ -121,7 +121,7 @@ const PI = Math.PI;
 setTimeout(() => portrait.classList.add('on'), reduce ? 0 : 1700);
 
 /* ---------- model: your GLB, decoded in the browser (meshopt) ---------- */
-const MODEL_URL = 'tv-wall.glb';
+const MODEL_URL = (matchMedia('(pointer:coarse)').matches || innerWidth < 900 || (navigator.deviceMemory || 8) < 4) ? 'tv-wall-lite.glb' : 'tv-wall.glb';   /* phones get the same wall with smaller textures (the 8K one made iPhones crash) */
 const K = 8, NODE_S = 0.9472135007381439, NODE_T = [0.004587501287460327, -0.004681497812271118, 0.0135670006275177], YMIN = -0.62034976;
 const SC = K * NODE_S, OFS = [NODE_T[0] * K, -YMIN * SC + NODE_T[1] * K, NODE_T[2] * K];
 const toW = p => [p[0] * SC + OFS[0], p[1] * SC + OFS[1], p[2] * SC + OFS[2]];

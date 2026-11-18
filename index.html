@@ -12,8 +12,7 @@ function full(){try{sessionStorage.setItem('nandoIn','1')}catch(e){}get(ROOT+'fu
 window.__nandoFull=full;
 var seen=false;try{seen=sessionStorage.getItem('nandoIn')==='1'}catch(e){}
 if(seen||location.hash){full();return}
-var phone=matchMedia('(pointer:coarse)').matches||innerWidth<900||(navigator.deviceMemory||8)<4;
-get(ROOT+'intro/'+(phone?'phone.html':(file?'index.html':'')),function(t){var d=new DOMParser().parseFromString(t,'text/html'),bs=d.createElement('base');bs.href=ROOT+'intro/';d.head.insertBefore(bs,d.head.firstChild);
+get(ROOT+'intro/'+(file?'index.html':''),function(t){var d=new DOMParser().parseFromString(t,'text/html'),bs=d.createElement('base');bs.href=ROOT+'intro/';d.head.insertBefore(bs,d.head.firstChild);
  var el=document.adoptNode(d.documentElement);document.replaceChild(el,document.documentElement);
  el.querySelectorAll('script').forEach(function(o){var n=document.createElement('script');if(o.type)n.type=o.type;n.textContent=o.textContent;o.replaceWith(n)})})})();</script>
 </head><body><noscript><a href="full.html">Nando de Groot · portfolio</a></noscript></body></html>
