@@ -1,0 +1,60 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>De Nieuwkomers · Nando de Groot</title><meta name="description" content="Op 16 januari 2024 werd Nederland opgeschrikt door een dubbele moord in het vredige plattelandsdorp Weiteveen. Hoe heeft het hier zo vreselijk uit de "><meta name="author" content="Nando de Groot">
+<meta name="theme-color" content="#ffc816"><link rel="icon" href="../../favicon.ico" sizes="48x48"><meta property="og:image" content="../nieuwkomers-1.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap"><style>
+html,body{margin:0;background:#ffc816}
+body{font-family:"Montserrat","Arial Black",Arial,sans-serif;color:#141414}
+header.top{position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:16px;padding:12px 22px;background:#ffc816}
+header .name{font-weight:900;font-size:22px;letter-spacing:.02em;text-decoration:none;text-transform:uppercase;white-space:nowrap;color:#fff;text-shadow:2px 2px 0 #0002}
+header nav{display:flex;flex-wrap:wrap;gap:4px 14px;font-weight:800;font-size:12px;margin-left:auto;justify-content:flex-end;align-items:center}
+header nav a{text-decoration:none;padding:4px 0;border-bottom:2px solid transparent;color:#fff}
+header nav a:hover{border-color:#141414;color:#141414}
+header .more>button{color:#fff}
+.pj{width:min(860px,92vw);margin:0 auto;padding:26px 0 80px}
+.pj-back{display:inline-block;font:800 11px "Montserrat",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#141414;text-decoration:none;border-bottom:2px solid #141414;margin-bottom:22px}
+.pj-back:hover{color:#fc711a;border-color:#fc711a}
+.pj-hero{position:relative;border-radius:12px;overflow:hidden;box-shadow:8px 10px 0 #0003;aspect-ratio:16/8;background:#141414}
+.pj-hero img{width:100%;height:100%;object-fit:cover;display:block}
+.pj-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,20,20,.75),rgba(20,20,20,0) 55%)}
+.pj-ht{position:absolute;left:28px;right:28px;bottom:22px;z-index:2;color:#fff}
+.pj-ht h1{margin:0;font:900 clamp(34px,6vw,64px)/.95 "Montserrat",sans-serif;text-transform:uppercase;letter-spacing:-.01em}
+.pj-ht p{margin:10px 0 0;font:700 11px "Montserrat",sans-serif;letter-spacing:.2em;text-transform:uppercase;opacity:.9}
+.pj-role{display:inline-block;margin-top:14px;background:#ffc816;color:#141414;font:800 10px "Montserrat",sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:6px 10px;border-radius:4px}
+.pj-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:36px;margin-top:40px;align-items:start}
+.pj-body p{font:500 16px/1.75 "Montserrat",sans-serif;margin:0 0 18px;color:#141414e6}
+.pj-body p:first-child{font-weight:700;font-size:18px}
+.pj-cred{background:#141414;color:#fff;border-radius:12px;padding:22px 22px 10px;box-shadow:6px 7px 0 #0003}
+.pj-cred h3{margin:0 0 14px;font:900 12px "Montserrat",sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#ffc816}
+.pj-cred dl{margin:0}
+.pj-cred dt{font:700 10px "Montserrat",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#ffffff99}
+.pj-cred dd{margin:3px 0 14px;font:700 14px/1.4 "Montserrat",sans-serif}
+.pj-cred dd.me{color:#ffc816}
+.pj-video{margin-top:40px;border-radius:12px;overflow:hidden;box-shadow:8px 10px 0 #0003;aspect-ratio:16/9;background:#000}
+.pj-video iframe{width:100%;height:100%;border:0;display:block}
+.pj-gal{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px}
+.pj-gal img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;box-shadow:5px 6px 0 #0003;display:block;cursor:zoom-in;transition:transform .3s}
+.pj-gal img:nth-child(odd){transform:rotate(-.6deg)}.pj-gal img:nth-child(even){transform:rotate(.6deg)}
+.pj-gal img:hover{transform:rotate(0) scale(1.02)}
+.pj-src{margin-top:40px;font:600 12px "Montserrat",sans-serif;color:#14141499}
+.pj-foot{text-align:center;padding:0 0 40px;font:700 11px "Montserrat",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#14141488}
+@media (max-width:760px){.pj-grid{grid-template-columns:1fr}.pj-gal{grid-template-columns:1fr}header nav{display:none}.pj-hero{aspect-ratio:4/3}}
+
+.more{position:relative;display:inline-flex}
+.more>button{all:unset;cursor:pointer;padding:4px 0;border-bottom:2px solid transparent;font-weight:800;font-size:12px;letter-spacing:inherit}
+.more>button:hover,.more.open>button{border-color:var(--dark,#141414)}
+.moremenu{position:absolute;right:0;top:calc(100% + 10px);z-index:80;background:var(--dark,#141414);border-radius:10px;padding:8px;display:flex;flex-direction:column;min-width:210px;box-shadow:6px 7px 0 #0003;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .2s,transform .2s,visibility 0s .2s}
+.moremenu::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+.more:hover .moremenu,.more:focus-within .moremenu,.more.open .moremenu{opacity:1;visibility:visible;transform:none;transition:opacity .2s,transform .2s}
+.moremenu a{color:#fff!important;padding:9px 12px!important;border:0!important;border-radius:6px;white-space:nowrap;text-decoration:none;font-weight:800;font-size:12px}
+.moremenu a:hover,.moremenu a.on{background:#ffffff14;color:var(--bg,#ffc816)!important}
+</style></head><body>
+<header class="top"><a class="name" href="../../">Nando de Groot</a><nav><a href="../../#recent">RECENT</a><a href="../../edit/">EDIT</a><a href="../../camera/">CAMERA</a><a href="../../journalism/">JOURNALISM</a><a href="../../commissioned/">COMMISSIONED</a><a href="../../directing/">DIRECTING</a><a href="../../about/">ABOUT</a><a href="../../contact/">CONTACT</a><span class="more"><button type="button" onclick="this.parentNode.classList.toggle('open')" aria-haspopup="true">MORE ▾</button><span class="moremenu"><a href="../../tv-series/">TV SERIES</a><a href="../../photos/">PHOTOS</a><a href="../../paintings/">PAINTINGS</a><a href="../../ai-tools-games/">AI, TOOLS &amp; GAMES</a></span></span></nav></header>
+<main class="pj"><a class="pj-back" href="../../edit/">← Edit</a>
+<div class="pj-hero"><img src="../nieuwkomers-1.jpg" alt="De Nieuwkomers"><div class="pj-ht"><h1>De Nieuwkomers</h1><p>Documentary series · EO / NPO 1</p><span class="pj-role">Edit · Nando de Groot</span></div></div>
+<div class="pj-grid"><div class="pj-body"><p>Op 16 januari 2024 werd Nederland opgeschrikt door een dubbele moord in het vredige plattelandsdorp Weiteveen. Hoe heeft het hier zo vreselijk uit de hand kunnen lopen? Dit documentaire drieluik vertelt het verhaal vanuit meerdere perspectieven en gaat op zoek naar antwoorden.</p></div><aside class="pj-cred"><h3>Credits</h3><dl><dt>Producent</dt><dd>Maartje Kamphuis &amp; Jeanine Blom</dd><dt>Uitvoerend Producent</dt><dd>Ingrid Remeijsen</dd><dt>Eindredactie</dt><dd>Dirk Mostert</dd><dt>Research</dt><dd>Selina Stap</dd><dt>Regie</dt><dd>Duco Coops</dd><dt>DOP</dt><dd>Stefan Jansen</dd><dt>Camera</dt><dd>Wouter Kloosterman, Thomas Fibbe, Steijn Leijzer</dd><dt>Montage</dt><dd class=me>Pepijn Ashmann, Nando de Groot</dd><dt>Legal</dt><dd>Gaico Bos &amp; Marianne Augusteijn</dd><dt>Zender</dt><dd>NPO1</dd><dt>Omroep</dt><dd>EO</dd></dl></aside></div>
+<div class="pj-video"><iframe src="https://www.youtube-nocookie.com/embed/dIBBKjzCGdY?rel=0" title="De Nieuwkomers promo" allow="fullscreen; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div class="pj-gal"><img src="../nieuwkomers-2.jpg" alt="De Nieuwkomers" loading="lazy"><img src="../nieuwkomers-3.jpg" alt="De Nieuwkomers" loading="lazy"></div>
+<p class="pj-src">Een productie van We Gaan ’t Zien Media.</p></main>
+<footer class="pj-foot">© 2026 Nando de Groot</footer>
+<script>document.addEventListener('click',function(e){var i=e.target.closest('.pj-gal img');if(!i)return;var d=document.createElement('div');d.style.cssText='position:fixed;inset:0;z-index:999;background:#000e;display:grid;place-items:center;cursor:zoom-out';d.innerHTML='<img style="max-width:94vw;max-height:92vh;border-radius:8px" src="'+i.src+'">';d.onclick=function(){d.remove()};document.body.appendChild(d)});
+document.addEventListener('click',function(e){var m=document.querySelector('.more.open');if(m&&!m.contains(e.target))m.classList.remove('open')});</script>
+</body></html>
