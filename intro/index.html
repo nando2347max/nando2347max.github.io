@@ -397,7 +397,7 @@ function enterSite() {
   setTimeout(() => {
     world.style.transform = ''; world.style.filter = ''; fx.style.display = 'none';
     if (!reduce) { world.classList.add('off'); }
-    setTimeout(() => { if (window.parent !== window) { try { window.parent.postMessage('nando:enter', '*'); return; } catch (e) {} } location.assign(SITE_URL); }, reduce ? 0 : 440);
+    setTimeout(() => { if (window.__nandoFull) { window.__nandoFull(); return; } location.assign(SITE_URL); }, reduce ? 0 : 440);
   }, dur);
 }
 addEventListener('pageshow', e => { if (e.persisted) { leaving = false;  document.body.classList.remove('leaving'); world.classList.remove('off'); world.style.transform = ''; world.style.filter = ''; fx.style.display = 'none'; } });
@@ -537,7 +537,7 @@ function drawGrain() { const d = gx.createImageData(160, 100); for (let k = 0; k
 
 /* ---------- main loop ---------- */
 function resize() {
-  const RT = world.getBoundingClientRect(); vw = Math.round(RT.width) || document.documentElement.clientWidth || innerWidth; vh = Math.round(RT.height) || document.documentElement.clientHeight || innerHeight; dpr = Math.min(devicePixelRatio || 1, dprCap);
+  const RT = world.getBoundingClientRect(); vw = Math.min(Math.round(RT.width) || innerWidth, 4096); vh = Math.min(Math.round(RT.height) || innerHeight, 4096); dpr = Math.min(devicePixelRatio || 1, dprCap);
   glc.width = Math.round(vw * dpr); glc.height = Math.round(vh * dpr); spillCv.width = Math.max(64, vw / 8 | 0); spillCv.height = Math.max(48, vh / 8 | 0);
   if (zoom >= 0) Object.assign(goal, zoomGoal(zoom)); else setGoalWall();
   if (!frameN) Object.assign(cam, goal, { dist: goal.dist * 1.0 });
