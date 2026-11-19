@@ -1416,11 +1416,11 @@ function skGhosts(){if(typeof UGO==='undefined'||!UGO||!UGO.G||UGO.__skGh)return
 
 /* ----- your painted mountain panorama instead of the flat-colour mountain layers ----- */
 function skMountains(){if(window.__SKMTM||typeof MT==='undefined'||!MT.children.length)return;window.__SKMTM=[];var L=SKW_LVL;
- skWorldImg('mountains.webp').then(function(img){var ch=MT.children;ch.forEach(function(q){q.material.visible=false});
+ skWorldImg('mountains.webp').then(function(img){window.__SKMTIMG=img;var ch=MT.children;ch.forEach(function(q){q.material.visible=false});
   var night=L==='city',zb=L==='zombie';
-  [[0,1650,2,0,-60,night?0x9CA2D4:zb?0x8FAE96:0xffffff],[2,1150,1.6,.37,-72,night?0x666C96:zb?0x56705E:0xB8BCC8]].forEach(function(c){var par=ch[c[0]]||ch[0];var t=new THREE.Texture(img);t.wrapS=THREE.RepeatWrapping;t.repeat.set(c[2],1);t.offset.x=c[3];t.anisotropy=4;t.__skTx=1;t.needsUpdate=true;
+  [[0,1650,2,0,-44,night?0x9CA2D4:zb?0x8FAE96:0xffffff],[2,1150,1.6,.37,-60,night?0x666C96:zb?0x56705E:0xB8BCC8]].forEach(function(c){var par=ch[c[0]]||ch[0];var t=new THREE.Texture(img);t.wrapS=THREE.RepeatWrapping;t.repeat.set(c[2],1);t.offset.x=c[3];t.anisotropy=4;t.__skTx=1;t.needsUpdate=true;
    var H=c[1]/c[2]*img.height/img.width,m=new THREE.Mesh(new THREE.PlaneGeometry(c[1],H),new THREE.MeshBasicMaterial({map:t,transparent:true,depthWrite:false,fog:false,color:c[5]}));m.position.set(0,c[4]+H/2,0);m.renderOrder=-3+c[0]*.1;m.userData.c0=c[5];par.add(m);window.__SKMTM.push(m)})}).catch(function(e){window.__mtErr=String(e)})}
-function skMountainFrame(){var M=window.__SKMTM;if(!M||!M.length)return;var r66=(typeof UGM!=='undefined'&&UGM==='r66');M.forEach(function(m,i){var c=r66?(i?0xB86848:0xF0A070):m.userData.c0;if(m.material.color.getHex()!==c)m.material.color.setHex(c)})}
+function skMountainFrame(){try{if(typeof UGO!=='undefined'&&UGO&&UGO.FAC&&!UGO.FAC.userData.skMt&&window.__SKMTIMG){UGO.FAC.userData.skMt=1;var img=window.__SKMTIMG;[[0,.32,150,40,-4,0xC8CCE0],[-70,.72,120,28,-14,0xA8ACC4],[70,.9,120,30,-12,0xA8ACC4]].forEach(function(c){var t=new THREE.Texture(img);t.wrapS=THREE.RepeatWrapping;t.repeat.set(.3,1);t.offset.x=c[1]-.15;t.__skTx=1;t.needsUpdate=true;var H=c[2]/(.3*img.width/img.height),m=new THREE.Mesh(new THREE.PlaneGeometry(c[2],H),new THREE.MeshBasicMaterial({map:t,transparent:true,depthWrite:false,color:c[5]}));m.position.set(c[0],c[3]+H/2,c[4]);UGO.FAC.add(m)})}}catch(e){window.__mtErr2=String(e)}var M=window.__SKMTM;if(!M||!M.length)return;var r66=(typeof UGM!=='undefined'&&UGM==='r66');M.forEach(function(m,i){var c=r66?(i?0xB86848:0xF0A070):m.userData.c0;if(m.material.color.getHex()!==c)m.material.color.setHex(c)})}
 
 /* ----- grass texture on the verge wherever the grass grows (the dark/street texture stays only in the city blocks) ----- */
 var SKSG=null;
