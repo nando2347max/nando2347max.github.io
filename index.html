@@ -319,8 +319,8 @@ function setGoalWall() { Object.assign(goal, { x: WALL.x, y: WALL.y, z: WALL.z, 
 /* ---------- channels ---------- */
 const srcBox = mk('div', '', document.body); srcBox.id = 'tvSrc';
 const toUrl = c => { const bin = atob(c.d), u = new Uint8Array(bin.length); for (let k = 0; k < bin.length; k++) u[k] = bin.charCodeAt(k); return URL.createObjectURL(new Blob([u], { type: 'video/mp4' })); };
-const clipCh = CLIPS.concat(EXTRA_CLIPS).map(c => { const v = mk('video', '', srcBox); v.muted = v.defaultMuted = v.loop = v.playsInline = true; v.preload = 'auto'; v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.src = c.src || toUrl(c); v.play().catch(() => {}); return { kind: 'video', el: v, label: c.l }; });
-const filmCh = FILMS.map((f, n) => { const im = new Image(); im.referrerPolicy = 'no-referrer'; const c = { kind: 'img', el: im, label: f.t.trim(), yt: f.id, vimeo: f.vimeo, ready: false }; im.onload = () => { c.ready = true; }; setTimeout(() => { im.src = f.u; }, n < 12 ? 0 : 400 + n * 120); return c; });
+const clipCh = (LOW ? CLIPS.slice(0, 2).concat(EXTRA_CLIPS) : CLIPS.concat(EXTRA_CLIPS)).map(c => { const v = mk('video', '', srcBox); v.muted = v.defaultMuted = v.loop = v.playsInline = true; v.preload = 'auto'; v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.src = c.src || toUrl(c); v.play().catch(() => {}); return { kind: 'video', el: v, label: c.l }; });
+const filmCh = (LOW ? FILMS.slice(0, 14) : FILMS).map((f, n) => { const im = new Image(); im.referrerPolicy = 'no-referrer'; const c = { kind: 'img', el: im, label: f.t.trim(), yt: f.id, vimeo: f.vimeo, ready: false }; im.onload = () => { c.ready = true; }; setTimeout(() => { im.src = f.u; }, n < 12 ? 0 : 400 + n * 120); return c; });
 /* mix films, clips and pictures so every kind keeps coming by */
 const mixCh = (...ls) => { const out = [], n = Math.max(...ls.map(l => l.length)); for (let i = 0; i < n; i++) ls.forEach(l => { if (i < l.length) out.push(l[i]); }); return out; };
 let chans = mixCh(filmCh, clipCh);
@@ -458,7 +458,7 @@ let nextGlitch = 0, frameN = 0, lastDraw = 0, gi = 0;
 const webCh = [], seenUrl = new Set();
 const usable = c => !c.bad && (c.kind !== 'img' || c.ready);
 function nextChannel(cur) { for (let n = 0; n < chans.length + 1; n++) { const c = chans[gi++ % chans.length]; if (c !== cur && usable(c)) return c; } return null; }
-function addImage(url, label, yt) {
+let imgN = 0; function addImage(url, label, yt) { if (LOW && !seenUrl.has(url) && ++imgN > 28) return;
   if (seenUrl.has(url)) return; seenUrl.add(url);
   const im = new Image(); im.referrerPolicy = 'no-referrer'; const c = { kind: 'img', el: im, label: (label || 'PICTURE').toUpperCase().slice(0, 24), web: !yt, yt, ready: false };
   im.onload = () => { if (im.naturalWidth < 110 || im.naturalHeight < 70) { c.bad = true; return; } c.ready = true; };
@@ -508,7 +508,7 @@ async function scanSite() {
   for (const a of assets) { try { const r = await fetch(a); if (r.ok) scanText(await r.text(), a); } catch (e) {} }
 }
 (LOW ? IMAGE_URLS.filter((o, n) => n % 4 === 0) : IMAGE_URLS).forEach((o, n) => setTimeout(() => addImage(new URL(o.u, location.href).href, o.l), 300 + n * 180));   /* load the pictures one by one */
-setTimeout(() => { scanSite().catch(() => {}); }, 400);
+if (!LOW) setTimeout(() => { scanSite().catch(() => {}); }, 400);   /* phones: the built-in list is enough */
 /* drop pictures or videos onto the wall to add them */
 addEventListener('dragover', e => e.preventDefault());
 addEventListener('drop', e => { e.preventDefault(); [...(e.dataTransfer && e.dataTransfer.files || [])].forEach(f => { const url = URL.createObjectURL(f), name = f.name.replace(/\.[^.]+$/, ''); if (/^image\//.test(f.type)) addImage(url, name); else if (/^video\//.test(f.type)) { const v = mk('video', '', srcBox); v.muted = v.loop = v.playsInline = true; v.src = url; v.play().catch(() => {}); const c = { kind: 'video', el: v, label: name.toUpperCase().slice(0, 24) }; clipCh.push(c); chans = webCh.concat(clipCh, filmCh); } }); });
