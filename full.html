@@ -885,7 +885,7 @@ const ICONS = (() => {
 const D = JSON.parse(document.getElementById('data').textContent);
 /* the big games, tools and the video are separate files (apps/…): fetched once, the first time they are needed */
 const DX = { skate: 'apps/skate.html', napkin: 'apps/napkin.html', leopold: 'apps/leopold.txt', bubbles: 'apps/bubbles.html', flick: 'apps/flicktool.html' }, DXP = {};
-function needD(keys) { return Promise.all((keys || []).filter(k => DX[k] && D[k] == null).map(k => DXP[k] || (DXP[k] = fetch(DX[k]+'?v=1795133262').then(r => { if (!r.ok) throw new Error(r.status); return r.text(); }).then(t => { D[k] = t; }).catch(e => { delete DXP[k]; throw e; })))); }
+function needD(keys) { return Promise.all((keys || []).filter(k => DX[k] && D[k] == null).map(k => DXP[k] || (DXP[k] = fetch(DX[k]+'?v=1795133897').then(r => { if (!r.ok) throw new Error(r.status); return r.text(); }).then(t => { D[k] = t; }).catch(e => { delete DXP[k]; throw e; })))); }
 function keysFor(id) { const a = typeof APP === 'function' ? APP(id) : null, ks = [...String(a && a.src || '').matchAll(/D\.(\w+)/g)].map(m => m[1]); if (!a || !a.src) ks.push(id); return ks; }
 window.__needD = needD; window.__keysFor = keysFor;
 const WAITDOC = t => '<body style="margin:0;height:100vh;display:grid;place-items:center;background:#15151a;color:#ddd;font:600 16px system-ui,sans-serif">' + t + '</body>';
